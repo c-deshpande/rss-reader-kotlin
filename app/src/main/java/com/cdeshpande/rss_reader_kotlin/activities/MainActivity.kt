@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun getFeedData() {
         val api: API = RetrofitInstance.getRetrofitInstance.create(
-            API::class.java)
+            API::class.java
+        )
         val call: Call<RSSItem> = api.getNews()
 
         call.enqueue(object : Callback<RSSItem> {

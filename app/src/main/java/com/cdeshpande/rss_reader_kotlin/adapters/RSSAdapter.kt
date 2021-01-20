@@ -6,8 +6,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.cdeshpande.rss_reader_kotlin.R
 import com.cdeshpande.rss_reader_kotlin.data.RSSItem
 import com.cdeshpande.rss_reader_kotlin.activities.WebViewActivity
@@ -27,13 +29,15 @@ class RSSAdapter(private val context: Context, private val rssItems: List<RSSIte
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RSSViewHolder, position: Int) {
 
-        val pubDate : List<String> = rssItems[position].pubDate.split(" ")
+        val pubDate: List<String> = rssItems[position].pubDate.split(" ")
         val date = pubDate[0]
         val time = pubDate[1]
+        val author = rssItems[position].author
 
         holder.txtTitle.text = rssItems[position].title
-        holder.txtDate.text = "$date at $time"
+        holder.txtDate.text = "$date at $time by $author"
         holder.txtContent.text = rssItems[position].content
+        Glide.with(context).load(rssItems[position].enclosure.link).into(holder.imgNews)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, WebViewActivity::class.java)
@@ -48,4 +52,5 @@ class RSSViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val txtTitle: TextView = itemView.findViewById(R.id.txtTitle)
     val txtDate: TextView = itemView.findViewById(R.id.txtDate)
     val txtContent: TextView = itemView.findViewById(R.id.txtContent)
+    val imgNews: ImageView = itemView.findViewById(R.id.imgNews)
 }

@@ -8,7 +8,7 @@ import com.cdeshpande.rss_reader_kotlin.R
 
 class WebViewActivity : AppCompatActivity() {
 
-    private lateinit var mWebView : WebView
+    private lateinit var mWebView: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

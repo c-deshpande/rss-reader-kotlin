@@ -1,4 +1,5 @@
 package com.cdeshpande.rss_reader_kotlin.networking
+
 import com.cdeshpande.rss_reader_kotlin.data.RSSItem
 import retrofit2.http.GET
 
